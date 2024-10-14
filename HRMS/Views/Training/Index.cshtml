@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Senarai Latihan";
+    Layout = "_Layout";
+}
+
+<h2>Senarai Latihan</h2>
+<a class="btn btn-primary" href="/Training/Create">Tambah Latihan Baru</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Nama Latihan</th>
+            <th>Tarikh</th>
+            <th>Lokasi</th>
+            <th>Tindakan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TrainingName</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.Location</td>
+                <td>
+                    <a href="/Training/Edit/@item.Id" class="btn btn-warning">Edit</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete(@item.Id)" class="btn btn-danger">Hapus</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(trainingId) {
+        if (confirm("Adakah anda pasti ingin menghapuskan latihan ini?")) {
+            window.location.href = `/Training/Delete/${trainingId}`;
+        }
+    }
+</script>

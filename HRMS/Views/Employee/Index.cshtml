@@ -1,0 +1,63 @@
+@model IEnumerable<HRMS.Models.Employee>
+
+@{
+    ViewData["Title"] = "Senarai Pekerja";
+}
+
+<h2>Senarai Pekerja</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nama Penuh</th>
+            <th>Jawatan</th>
+            <th>Email</th>
+            <th>Tarikh Mula Kerja</th>
+            <th>Nombor Telefon</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.FullName</td>
+                <td>@employee.Position</td>
+                <td>@employee.Email</td>
+                <td>@employee.StartDate.ToShortDateString()</td>
+                <td>@employee.PhoneNumber</td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@employee.Id">Edit</a>
+                    <button class="btn btn-danger" onclick="confirmDelete(@employee.Id, '@employee.FullName')">Hapus</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-action="Create">Tambah Pekerja Baru</a>
+
+<!-- Modal untuk pengesahan pemadaman -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Hapus Pekerja</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="employeeName">Adakah anda pasti ingin menghapuskan pekerja eqweqwewq?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/employee.js"></script> <!-- Pautan ke fail JavaScript -->
+}

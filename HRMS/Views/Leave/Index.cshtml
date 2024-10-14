@@ -1,0 +1,60 @@
+@model IEnumerable<HRMS.Models.Leave>
+
+@{
+    ViewData["Title"] = "Senarai Cuti";
+    Layout = "_Layout";
+}
+
+<h2>Senarai Cuti</h2>
+<a class="btn btn-primary" href="@Url.Action("Create", "Leave")">Mohon Cuti</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nama Pekerja</th>
+            <th>Jenis Cuti</th>
+            <th>Tarikh Mula</th>
+            <th>Tarikh Akhir</th>
+            <th>Tindakan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in Model)
+        {
+            <tr>
+                <td>@leave.EmployeeName</td>
+                <td>@leave.LeaveType</td>
+                <td>@leave.StartDate.ToShortDateString()</td>
+                <td>@leave.EndDate.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "Leave", new { id = leave.Id })">Edit</a>
+                    <button class="btn btn-danger" onclick="confirmDelete(@leave.Id, '@leave.EmployeeName')">Hapus</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Tambah modal pengesahan pemadaman seperti contoh Employee -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Hapus Cuti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="leaveName">Adakah anda pasti ingin menghapuskan cuti ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/leave.js"></script>
+}

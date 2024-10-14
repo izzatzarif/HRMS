@@ -1,0 +1,28 @@
+@model HRMS.Models.Leave
+
+@{
+    ViewData["Title"] = "Edit Permohonan Cuti";
+    Layout = "_Layout";
+}
+
+<h2>Edit Permohonan Cuti</h2>
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label>Nama Pekerja</label>
+        <input type="text" asp-for="EmployeeName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Jenis Cuti</label>
+        <input type="text" asp-for="LeaveType" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Tarikh Mula</label>
+        <input type="date" asp-for="StartDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Tarikh Akhir</label>
+        <input type="date" asp-for="EndDate" class="form-control" required />
+    </div>
+    <input type="hidden" asp-for="Id" />  <!-- Menyimpan ID permohonan cuti -->
+    <button type="submit" class="btn btn-success">Kemaskini</button>
+</form>

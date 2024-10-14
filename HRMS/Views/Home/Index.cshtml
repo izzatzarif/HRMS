@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_Layout";
+}
+
+<h1>Selamat Datang ke HRMS Dashboard</h1>
+
+<div class="card-container">
+    <div class="card">
+        <h3>Pekerja</h3>
+        <p>Urus maklumat pekerja, tambah pekerja baru, dan lihat senarai pekerja.</p>
+        <a class="btn" asp-controller="Employee" asp-action="Index">Pergi ke Pekerja</a>
+    </div>
+
+    <div class="card">
+        <h3>Cuti</h3>
+        <p>Urus permohonan cuti dan lihat senarai cuti yang diluluskan.</p>
+        <a class="btn" asp-controller="Leave" asp-action="Index">Pergi ke Cuti</a>
+    </div>
+
+    <div class="card">
+        <h3>Latihan</h3>
+        <p>Urus senarai latihan, tambah latihan baru, dan pantau perkembangan latihan.</p>
+        <a class="btn" asp-controller="Training" asp-action="Index">Pergi ke Latihan</a>
+    </div>
+</div>
